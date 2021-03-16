@@ -12,24 +12,35 @@
                     th Stock
                     th Action
             tbody
-                - @products.each do |product|
-                  tr
-                    td = product.title 
-                    td = product.description
-                    td = product.stock
-                    td
-                     span = link_to product do 
-                        i.fas.fa-eye
-                     span.ml-3 = link_to edit_product_path(product) do 
-                        i.fas.fa-pen
-                     span.ml-3 = link_to  product, method: :delete, data: { confirm: 'Are you sure?' } do 
-                        i.fas.fa-trash
+                - if user_signed_in?
+                  - @products.each do |product|
+                    tr
+                      td = product.title 
+                      td = product.description
+                      td = product.stock
+                      td
+                        span = link_to product do 
+                          i.fas.fa-eye
+                        span.ml-3 = link_to edit_product_path(product) do 
+                          i.fas.fa-pen
+                        span.ml-3 = link_to  product, method: :delete, data: { confirm: 'Are you sure?' } do 
+                          i.fas.fa-trash
+                - if not user_signed_in?
+                  - @products.each do |product|
+                    tr
+                      td = product.title 
+                      td = product.description
+                      td = product.stock
+                      td
+                        span = link_to product do 
+                          i.fas.fa-eye
 
 .row
   .col-6 
     = paginate @products
-                    
-.row
   .col-6
     .float-right
-        = link_to 'New Product', new_product_path
+        = link_to new_product_path do 
+          = button_tag 'Add new Product', class: 'btn btn-outline-dark'
+            i.fas.fa-plus-square
+            |  Add new Product

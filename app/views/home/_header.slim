@@ -1,6 +1,7 @@
-nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #ED1D24;"
+nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #FC5B31;"
   div 
-    = link_to "Shopnee", root_path, class:"navbar-brand"
+    = link_to root_path, class:"navbar-brand" do 
+      i.fab.fa-shopify.fa-3x
   button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
@@ -19,7 +20,10 @@ nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #ED1D24;"
                 = link_to "Sign Up", new_user_registration_path, class:"nav-link"
             li.nav-item
                 = link_to "Sign In", new_user_session_path, class:"nav-link"
-    form.form-inline.my-2.my-lg-0
-        = form_tag products_path, method: :get do 
-            = text_field_tag 'search', @search, placeholder: 'search',
-        class: 'form-control.mr-sm-2 aria-label="rch"'
+    form
+        = form_tag products_path, method: :get, class: "form-inline.my-2.my-lg-0" do
+          div.row
+            div.form-group.col-xs-6
+              = search_field_tag 'search', @search, placeholder: 'Search', class: "form-control mr-sm-2"
+            div.form-group.col-xs-6.ml-3
+              = submit_tag 'Search', class: "btn btn-outline-light my-2 my-sm-0"
