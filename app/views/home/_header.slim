@@ -1,0 +1,25 @@
+nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #ED1D24;"
+  div 
+    = link_to "Shopnee", root_path, class:"navbar-brand"
+  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      - if user_signed_in?
+            li.nav-item
+                = link_to "Product", products_path, class:"nav-link"
+            li.nav-item
+                = link_to "Sign Out", destroy_user_session_path, class:"nav-link", method: :delete
+            li.nav-item
+                = link_to "Edit Profile", edit_user_registration_path, class:"nav-link"
+      - else
+            li.nav-item
+                = link_to "Product", products_path, class:"nav-link"
+            li.nav-item
+                = link_to "Sign Up", new_user_registration_path, class:"nav-link"
+            li.nav-item
+                = link_to "Sign In", new_user_session_path, class:"nav-link"
+    form.form-inline.my-2.my-lg-0
+        = form_tag products_path, method: :get do 
+            = text_field_tag 'search', @search, placeholder: 'search',
+        class: 'form-control.mr-sm-2 aria-label="rch"'

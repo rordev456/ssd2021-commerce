@@ -1,0 +1,16 @@
+.jumbotron
+  h1.display-4
+    = @product.title
+  hr.my-4
+    = @product.description
+  p
+    strong
+        | Stock:
+    = @product.stock
+
+  span
+    = link_to edit_product_path(@product) do 
+        = button_tag 'Edit', class: 'btn bg-light'
+  span.ml-3
+    = link_to products_path do 
+        = button_tag 'Back', class: 'btn bg-light'

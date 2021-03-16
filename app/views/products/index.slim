@@ -1,0 +1,35 @@
+.row
+    .col-6
+        h1 Product List
+
+.row.mt-2
+    .col
+        table.table.table-bordered.table-striped.table-hover
+            thead.thead-dark
+                tr 
+                    th Title 
+                    th Description 
+                    th Stock
+                    th Action
+            tbody
+                - @products.each do |product|
+                  tr
+                    td = product.title 
+                    td = product.description
+                    td = product.stock
+                    td
+                     span = link_to product do 
+                        i.fas.fa-eye
+                     span.ml-3 = link_to edit_product_path(product) do 
+                        i.fas.fa-pen
+                     span.ml-3 = link_to  product, method: :delete, data: { confirm: 'Are you sure?' } do 
+                        i.fas.fa-trash
+
+.row
+  .col-6 
+    = paginate @products
+                    
+.row
+  .col-6
+    .float-right
+        = link_to 'New Product', new_product_path
