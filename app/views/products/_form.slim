@@ -18,5 +18,8 @@
   .field.form-group
     = form.label :stock
     = form.number_field :stock, class:"form-control"
+  .field.form-group 
+    = form.label :categories
+    = form.collection_select :category_ids, Category.order(:name), :id, :name, {}, class:"form-control select2", multiple: true
   .actions
     = form.submit class:"btn btn-secondary"

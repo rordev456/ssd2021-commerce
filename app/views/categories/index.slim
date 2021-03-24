@@ -1,0 +1,6 @@
+h1 Category List
+.cointainer-fluid.py-3
+    ul.list-unstyled.nav 
+        = render @categories
+    - if user_signed_in?
+        = link_to 'New Category', new_category_path, class: 'btn btn-primary'

@@ -1,6 +1,9 @@
 .jumbotron
   h1.display-4
     = @product.title
+  .cointainer-fluid.py-3
+    ul.list-unstyled.nav
+      = render @product.categories
   hr.my-4
     = @product.description
   p

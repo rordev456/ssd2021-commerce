@@ -1,0 +1,13 @@
+<div class="card" style="width: 18 rem;">
+    <img class="card-img-top" src="https://www.flaticon.com/svg/vstatic/svg/2522/2522060.svg?token=exp=1616595906~hmac=7ac90bdbdd7e17ca384131ad41516b4e" alt="Card image cap">
+    <div class="card-body">
+        <h5><%= product.title %></h5>
+        <p class="card-text"> <%= product.description%> </p>
+        <%= link_to 'Info', product, class:"btn btn-primary" %>
+    <% if user_signed_in? %>
+        <%= link_to 'Edit', edit_product_path(product), class:"btn btn-secondary" %>
+        <%= link_to 'Delete', product, method: :delete, data: { confirm:"Are you sure?"}, class:"btn btn-danger"%>
+    <% end %>
+    </div>
+</div>
+

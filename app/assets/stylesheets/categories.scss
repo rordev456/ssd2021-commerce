@@ -1,0 +1,15 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+li.category-link {
+    padding: 5px;
+    a {
+        color: #ffffff;
+        .bg-secondary {
+            &:hover {
+                background-color: lighten(#6c757d, 12.5) !important;
+            }
+        }
+    }
+}
