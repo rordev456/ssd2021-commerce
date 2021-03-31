@@ -4,6 +4,15 @@
   .cointainer-fluid.py-3
     ul.list-unstyled.nav
       = render @product.categories
+  - if @product.draft?
+    span.badge.badge-pill.badge-secondary
+      = @product.status
+  - if @product.published?
+    span.badge.badge-pill.badge-info
+      = @product.status
+  - if @product.archived?
+    span.badge.badge-pill.badge-success
+      = @product.status
   hr.my-4
     = @product.description
   p

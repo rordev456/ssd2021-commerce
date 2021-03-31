@@ -20,6 +20,16 @@
     = form.number_field :stock, class:"form-control"
   .field.form-group 
     = form.label :categories
-    = form.collection_select :category_ids, Category.order(:name), :id, :name, {}, class:"form-control select2", multiple: true
+    = form.collection_check_boxes :category_ids, Category.order(:name), :id, :name, multiple: true do |b|
+      |   
+      span
+        = b.label(class:"check_box") do
+            = b.check_box(class:"check_box")
+            |   
+            = b.object.name
+            
+  .field.form-group
+    = form.label :status
+    = form.select :status, Product.statuses.keys.map {|u| [u.titleize, u]}, {}, class:"form-control"
   .actions
     = form.submit class:"btn btn-secondary"
