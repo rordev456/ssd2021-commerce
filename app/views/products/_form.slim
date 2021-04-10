@@ -31,5 +31,24 @@
   .field.form-group
     = form.label :status
     = form.select :status, Product.statuses.keys.map {|u| [u.titleize, u]}, {}, class:"form-control"
+  .field.form-group
+    = form.label :primary_image
+    = form.file_field :primary_image, class:"form-control"
+    - if product.primary_image.attached?
+      br
+      = image_tag product.primary_image, class: "img-fluid w-25"
+      br
+      = form.label :remove_primary_image
+      = form.check_box(:remove_primary_image)
+  .field.form-group
+    = form.label :supporting_images
+    = form.file_field :supporting_images, multiple: true, class:"form-control"
+    - if product.supporting_images.attached?
+      br
+      - product.supporting_images.each do |image|
+        span.ml-3 = image_tag image, class: "img-fluid w-25"
+      br
+      = form.label :remove_supporting_images
+      = form.check_box(:remove_supporting_images)
   .actions
     = form.submit class:"btn btn-secondary"

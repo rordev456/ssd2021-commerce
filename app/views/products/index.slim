@@ -12,21 +12,30 @@
         table.table.table-bordered.table-striped.table-hover
             thead.thead-dark
                 tr 
-                    th Title 
-                    th Description 
-                    th Stock
-                    th Status
-                    th Created at
-                    th Updated at
-                    th Action
+                    th (style="width: 10%") Title 
+                    th (style="width: 10%") Primary Image
+                    th (style="width: 10%") Description 
+                    th (style="width: 10%") Stock
+                    th (style="width: 10%") Status
+                    th (style="width: 20%") Supporting Images
+                    th (style="width: 10%") Created at
+                    th (style="width: 10%") Updated at
+                    th (style="width: 10%") Action
             tbody
                 - if user_signed_in?
                   - @products.each do |product|
                     tr
                       td = product.title
+                      td
+                        - if product.primary_image.attached?
+                          = image_tag product.primary_image, class: "img-fluid"
                       td = product.description
                       td = product.stock
                       td = product.status.capitalize 
+                      td
+                        - if product.supporting_images.attached?
+                          - product.supporting_images.each do |image|
+                            span.ml-3 = image_tag image, class: "img-fluid", width: "50px", height: "50px"
                       td.font-weight-light = "#{time_ago_in_words(product.created_at)} Ago"
                       td.font-weight-light = "#{time_ago_in_words(product.updated_at)} Ago"
                       td
@@ -39,10 +48,17 @@
                 - if not user_signed_in?
                   - @products.each do |product|
                     tr
-                      td = product.title 
+                      td = product.title
+                      td
+                        - if product.primary_image.attached?
+                          = image_tag product.primary_image, class: "img-fluid"
                       td = product.description
                       td = product.stock
                       td = product.status.capitalize
+                      td
+                        - if product.supporting_images.attached?
+                          - product.supporting_images.each do |image|
+                            span.ml-3 = image_tag image, class: "img-fluid", width: "50px", height: "50px"
                       td.font-weight-light = "#{time_ago_in_words(product.created_at)} Ago"
                       td.font-weight-light = "#{time_ago_in_words(product.updated_at)} Ago"
                       td

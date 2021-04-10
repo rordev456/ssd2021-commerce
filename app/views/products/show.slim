@@ -2,6 +2,8 @@
   h1.display-4
     = @product.title
   .cointainer-fluid.py-3
+    - if @product.primary_image.attached?
+      img-fluid.w-25 = image_tag @product.primary_image
     ul.list-unstyled.nav
       = render @product.categories
   - if @product.draft?
@@ -19,7 +21,14 @@
     strong
         | Stock:
     = @product.stock
-
+  
+  - if @product.supporting_images.attached?
+    p
+      strong Supporting Images
+    br
+      - @product.supporting_images.each do |image|
+        span.ml-3 = image_tag image, class: "img-fluid w-25"
+  br
   span
     = link_to edit_product_path(@product) do 
         = button_tag 'Edit', class: 'btn bg-light'

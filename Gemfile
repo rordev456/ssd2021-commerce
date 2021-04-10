@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+#For filtering file type
+gem 'active_storage_validations'
+
 # For pagination
 gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 
