@@ -4,7 +4,7 @@
 
 .row
   .col
-    = link_to products_path(format: :csv) do 
+    = link_to admins_products_path(format: :csv) do 
       = button_tag 'Download CSV', class: 'btn btn-secondary float-right'
 
 .row.mt-2
@@ -39,11 +39,11 @@
                       td.font-weight-light = "#{time_ago_in_words(product.created_at)} Ago"
                       td.font-weight-light = "#{time_ago_in_words(product.updated_at)} Ago"
                       td
-                        span = link_to product do 
+                        span = link_to admins_product_path(product) do 
                           i.fas.fa-eye
-                        span.ml-3 = link_to edit_product_path(product) do 
+                        span.ml-3 = link_to edit_admins_product_path(product) do 
                           i.fas.fa-pen
-                        span.ml-3 = link_to  product, method: :delete, data: { confirm: 'Are you sure?' } do 
+                        span.ml-3 = link_to admins_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } do 
                           i.fas.fa-trash
                 - if not user_signed_in?
                   - @products.each do |product|
@@ -62,7 +62,7 @@
                       td.font-weight-light = "#{time_ago_in_words(product.created_at)} Ago"
                       td.font-weight-light = "#{time_ago_in_words(product.updated_at)} Ago"
                       td
-                        span = link_to product do 
+                        span = link_to admins_product_path(product) do 
                           i.fas.fa-eye
 
 .row
@@ -70,7 +70,7 @@
     = paginate @products
   .col-6
     .float-right
-        = link_to new_product_path do 
+        = link_to new_admins_product_path do 
           = button_tag 'Add new Product', class: 'btn btn-outline-dark'
             i.fas.fa-plus-square
             |  Add new Product
@@ -79,6 +79,6 @@
   .row
       .col
         h4.lead - Upload csv file to add the product
-        = form_tag products_csv_upload_path, multipart: true do
+        = form_tag admins_products_csv_upload_path , multipart: true do
           div = file_field_tag :csv_file
           div = submit_tag :upload

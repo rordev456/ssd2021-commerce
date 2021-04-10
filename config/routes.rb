@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
   resources :categories
-  resources :products
-  namespace :products do
-    post 'csv_upload'
+  namespace :admins do
+    resources :products
+    namespace :products do
+      post 'csv_upload'
+    end
   end
   # get 'home/index'
   root 'home#index'

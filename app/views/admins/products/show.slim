@@ -5,7 +5,10 @@
     - if @product.primary_image.attached?
       img-fluid.w-25 = image_tag @product.primary_image
     ul.list-unstyled.nav
-      = render @product.categories
+      li.category-link
+        - @product.categories.each do |category|
+          = link_to category do 
+            span.badge.bg-secondary = category.name
   - if @product.draft?
     span.badge.badge-pill.badge-secondary
       = @product.status
@@ -30,8 +33,8 @@
         span.ml-3 = image_tag image, class: "img-fluid w-25"
   br
   span
-    = link_to edit_product_path(@product) do 
+    = link_to edit_admins_product_path(@product) do 
         = button_tag 'Edit', class: 'btn bg-light'
   span.ml-3
-    = link_to products_path do 
+    = link_to admins_products_path do 
         = button_tag 'Back', class: 'btn bg-light'

@@ -8,7 +8,7 @@ nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #FC5B31;"
     ul.navbar-nav.mr-auto
       - if user_signed_in?
             li.nav-item
-                = link_to "Product", products_path, class:"nav-link"
+                = link_to "Product", admins_products_path, class:"nav-link"
             li.nav-item
                 = link_to "Catagory", categories_path, class:"nav-link"
             li.nav-item
@@ -17,7 +17,7 @@ nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #FC5B31;"
                 = link_to "Edit Profile", edit_user_registration_path, class:"nav-link"
       - else
             li.nav-item
-                = link_to "Product", products_path, class:"nav-link"
+                = link_to "Product", admins_products_path, class:"nav-link"
             li.nav-item
                 = link_to "Catagory", categories_path, class:"nav-link"
             li.nav-item
@@ -25,7 +25,7 @@ nav.navbar.navbar-expand-lg.navbar-dark style="background-color: #FC5B31;"
             li.nav-item
                 = link_to "Sign In", new_user_session_path, class:"nav-link"
     form
-        = form_tag products_path, method: :get, class: "form-inline.my-2.my-lg-0" do
+        = form_tag admins_products_path, method: :get, class: "form-inline.my-2.my-lg-0" do
           div.row
             div.form-group.col-xs-6
               = search_field_tag 'search', @search, placeholder: 'Search', class: "form-control mr-sm-2"

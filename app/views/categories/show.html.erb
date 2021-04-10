@@ -3,9 +3,22 @@
 </h1>
 
 <div class="cointainer-fluid py-3">
-  <div id="video-wrap" class="row">
-    <%= render @category.products %>
-  </div>
+  <% @category.products.each do |product| %>
+      <div class="card" style="width: 18 rem;">
+      <div class="card-img-top">
+        <i class="far fa-question-circle fa-9x"></i>
+      </div>
+      <div class="card-body">
+          <h5><%= product.title %></h5>
+          <p class="card-text"> <%= product.description%> </p>
+          <%= link_to 'Info', admins_product_path(product), class:"btn btn-primary" %>
+      <% if user_signed_in? %>
+          <%= link_to 'Edit', edit_admins_product_path(product), class:"btn btn-secondary" %>
+          <%= link_to 'Delete', admins_product_path(product), method: :delete, data: { confirm:"Are you sure?"}, class:"btn btn-danger"%>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
   <br>
   <% if user_signed_in? %>
     <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-secondary' %>
