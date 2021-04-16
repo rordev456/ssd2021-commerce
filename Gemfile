@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+gen 'aws-sdk-s3'
+
 #For filtering file type
 gem 'active_storage_validations'
 
