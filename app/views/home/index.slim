@@ -1,3 +1,29 @@
 br
 h1 Shopnee home page
-p press the product button on navbar to see product list
+
+.card-deck.mt-3
+  - @products.each do |product|
+          .card 
+            .view.zoom.overlay
+              - if product.primary_image.attached?
+                = image_tag product.primary_image, width: '100%', class: 'img-fluid w-100'
+              - else
+                .text-center
+                  i.far.fa-question-circle.fa-9x.mt-2
+            .card-body.text-center
+              h5 = product.title
+              p.small.text-muted.text-uppercase.mb-2 = product.description
+              p = "Stock: #{product.stock}"
+              hr
+              = link_to admins_product_path(product) do 
+                = button_tag 'Details', class: 'btn btn-light btn-sm mr-1 mb-2'
+                  i.fas.fa-info-circle.pr-2
+                  | DETAILS
+            .card-footer
+              small.text-muted = "Last updated #{time_ago_in_words(product.updated_at)} ago"
+
+.row.mt-2
+  .col-6 
+    = paginate @products
+
+
