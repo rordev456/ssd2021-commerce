@@ -1,5 +1,11 @@
 br
 h1 Shopnee home page
+.row
+  .col
+    = link_to orders_path do
+      = button_tag 'Order list', class: 'btn btn-secondary float-right'
+        i.fas.fa-list.pr-2
+        | Order list
 
 .card-deck.mt-3
   - @products.each do |product|
@@ -19,6 +25,10 @@ h1 Shopnee home page
                 = button_tag 'Details', class: 'btn btn-light btn-sm mr-1 mb-2'
                   i.fas.fa-info-circle.pr-2
                   | DETAILS
+              = link_to orders_new_path(:id => product.id) do 
+                = button_tag 'Buy Now', class: 'btn btn-success btn-sm mr-1 mb-2'
+                  i.fas.fa-shopping-cart.pr-2
+                  | Buy Now
             .card-footer
               small.text-muted = "Last updated #{time_ago_in_words(product.updated_at)} ago"
 

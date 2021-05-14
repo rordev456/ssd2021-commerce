@@ -1,0 +1,23 @@
+<h1> New Order </h1>
+<p>
+    You are going to buy <%= @product.title %>
+</p>
+<%= form_with model: @order do |form| %>
+    <div>
+        <%= form.hidden_field :product_id, value: @product_id %>
+    </div>
+
+    <div class="field form-group">
+        <%= form.label :address %><br>
+        <%= form.text_area :address, class:"form-control"%>
+    </div>
+
+    <div class="actions">
+        <%= form.submit class:"btn btn-secondary"%>
+    </div>
+<% end %>
+
+<br>
+<%= link_to root_path do %>
+    <% button_tag 'Back', class: 'btn btn-light btn-sm mr-1 mb-2' %>
+<% end %>

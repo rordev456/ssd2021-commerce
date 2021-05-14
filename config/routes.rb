@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
   resources :categories
+  get '/orders/new_order', to: 'orders#new', as: 'orders_new'
+  resources :orders
   namespace :admins do
     resources :products
     namespace :products do

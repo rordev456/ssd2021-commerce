@@ -6,6 +6,13 @@
   .col
     = link_to admins_products_path(format: :csv) do 
       = button_tag 'Download CSV', class: 'btn btn-secondary float-right'
+        i.fas.fa-file-download.pr-2
+        | Download CSV
+  .col-3
+    = link_to orders_path do
+      = button_tag 'Order list', class: 'btn btn-secondary float-right'
+        i.fas.fa-list.pr-2
+        | Order list
 
 .row.mt-2
     .col
